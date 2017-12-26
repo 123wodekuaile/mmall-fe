@@ -4,7 +4,8 @@
   "description": "",
   "main": "this is a begining",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "set WEBPAKC_ENV=dev && webpack-dev-server --inline --port 8088"
   },
   "keywords": [
     "begin"
@@ -20,6 +21,6 @@
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
     "webpack": "^1.15.0",
-    "webpack-dev-server": "^1.16.5"
+    "webpack-dev-server": "^1.16.5" 
   }
 }

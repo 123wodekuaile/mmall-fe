@@ -2,7 +2,7 @@
 * @Author: 21746209
 * @Date:   2017-12-18 10:33:24
 * @Last Modified by:   21746209
-* @Last Modified time: 2017-12-22 10:04:22
+* @Last Modified time: 2017-12-25 19:42:53
 */
 //通用的逻辑部分开发
 var Hogan = require("hogan");
@@ -19,10 +19,13 @@ var _mm = {
 			data 		: param.data   || ""	,
 			success: function(res){
 				if(0===res.status){
+                    //请求成功
 					typeof param.success === "function"&&param.success(res.data,res.msg);
 				}else if(10===res.status){
+                    //无登录状态
 					_this.doLogin();
 				}else if(1===res.status){
+                    //请求数据错误
 					typeof param.success==="function"&&param.error(res.msg);
 				}
 			},
@@ -31,6 +34,9 @@ var _mm = {
 			}
 		})
 	},
+     doLogin: function(){
+        window.location.href = './user-login.html?redirect='+encodeURIComponent(window.location.href);
+    },
 	getServerUrl: function(path){
 		return conf.serverHost+path;
 	},
@@ -65,9 +71,6 @@ var _mm = {
     	if("email"===type){
     		return /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/.test(value);
     	}
-    },
-    doLogin: function(){
-    	window.location.href = './user-login.html?redirect='+encodeURIComponent(window.location.href);
     },
     goHome: function(){
     	window.location.href = './index.html';

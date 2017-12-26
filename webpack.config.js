@@ -2,11 +2,16 @@
 * @Author: 21746209
 * @Date:   2017-12-18 13:22:36
 * @Last Modified by:   21746209
-* @Last Modified time: 2017-12-18 13:46:46
+* @Last Modified time: 2017-12-26 11:31:39
 */
 var webpack = require("webpack");
-var ExtractTextPlugin = require("Extract-text-webpack-plugin");
+var ExtractTextPlugin   = require('extract-text-webpack-plugin');
 var Htmlwebpakcplugin = require("html-webpack-plugin");
+
+//环境变量的配置
+var WEBPACK_ENV         = process.env.WEBPACK_ENV || 'dev';
+
+
 var getHtmlConfig = function(name,title){
 	return {
 		template    : './src/view/' + name + '.html',
@@ -19,20 +24,23 @@ var getHtmlConfig = function(name,title){
 }
 var config = {
 	entry: {
-		"common": ["./src/page/common/index.js"]
-		"index":["./src/page/index/index.js"]
+		"common": ["./src/page/common/index.js"],
+		"index":["./src/page/index/index.js"],
+		"result":["./src/page/result/index.js"],
+		"user-login":["./src/page/user-login/index.js"]
 	},
 	output: {
 		path: "./dist",
+		publicPath:"/dist",
 		filename: "js/[name].js"
 	},
-	externals: {
-		"jquery": "window.jQuery"
-	},
-	module: {
+	externals : {
+        'jquery' : 'window.jQuery'
+    },
+	module: { 
 		loaders: [
 			{test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader") },
-			{test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[hash:8].[name].[ext]' },
+			{test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[hash:8].[name].[ext]' }
 		]
 	},
 	resolve: {
@@ -43,15 +51,20 @@ var config = {
 			servive: __dirname+ "service",
 			image: __dirname+"image"
 		}
-	}
+	},
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({
             name : 'common',
             filename : 'js/base.js'
         }),
+        //单独打包到css文件中
         new ExtractTextPlugin("css/[name].css"),
-        new Htmlwebpakcplugin(getHtmlConfig("index","首页"));
-		new 
+        new Htmlwebpakcplugin(getHtmlConfig("index","首页")),
+        new Htmlwebpakcplugin(getHtmlConfig("list","商品列表页")),
+        new Htmlwebpakcplugin(getHtmlConfig("user-login","用户登录"))
 	]
+}
+if("dev"===WEBPACK_ENV){
+	config.entry.common.push('webpack-dev-server/client?http://localhost:8088/');
 }
 module.exports = config;
