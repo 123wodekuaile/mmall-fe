@@ -1,0 +1,27 @@
+/*
+* @Author: 21746209
+* @Date:   2018-01-04 15:44:07
+* @Last Modified by:   21746209
+* @Last Modified time: 2018-01-04 15:56:48
+*/
+.nav-side{
+    float: left;
+    width: 130px;
+    min-height: 100px;
+}
+.nav-side .nav-item{
+    line-height: 25px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.nav-side .nav-item .link{
+    color: #888;
+}
+.nav-side .nav-item.active .link{
+    color: #c60023;
+}
+/* 右侧内容区 */
+.content.with-nav{
+    float: left;
+    width: 950px;
+}

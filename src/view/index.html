@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+<%= require("html-loader!./layout/head-common.html") %>
+<title><%= htmlWebpackPlugin.options.title%> — happymall电商平台</title>
 </head>
 <body>
-	
+	<!-- 头部导航部分 -->
+	<%= require("html-loader!./layout/nav-simple.html") %>
 
-<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<!-- 通用的头部 -->
+	<%= require("html-loader!./layout/header.html") %>
+
+	<!-- 主体部分包括侧边导航-->
+	<div class="page-wrap w">
+		<%= require("html-loader!./layout/nav-side.html")%>
+		<div class="content with-nav">
+			
+		</div>
+	</div>
+	<%= require("html-loader!./layout/footer.html") %> 
 </body>
-</html>
+</html> 

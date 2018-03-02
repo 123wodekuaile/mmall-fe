@@ -2,7 +2,7 @@
 * @Author: 21746209
 * @Date:   2017-12-18 13:22:36
 * @Last Modified by:   21746209
-* @Last Modified time: 2017-12-26 11:31:39
+* @Last Modified time: 2018-03-01 20:39:49
 */
 var webpack = require("webpack");
 var ExtractTextPlugin   = require('extract-text-webpack-plugin');
@@ -20,7 +20,7 @@ var getHtmlConfig = function(name,title){
         inject      : true,
         hash        : true,
         chunks      : ['common', name] 
-	}
+	} 
 }
 var config = {
 	entry: {
@@ -40,18 +40,19 @@ var config = {
 	module: { 
 		loaders: [
 			{test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader","css-loader") },
+			{test: /\.string$/, loader: 'html-loader'},
 			{test: /\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=100&name=resource/[hash:8].[name].[ext]' }
 		]
 	},
-	resolve: {
-		alias: {
-			node_modules: __dirname+"node_modules",
-			util: __dirname+"util",
-			page:__dirname+"page",
-			servive: __dirname+ "service",
-			image: __dirname+"image"
-		}
-	},
+	 resolve : {
+        alias : {
+            node_modules    : __dirname + '/node_modules',
+            util            : __dirname + '/src/util',
+            page            : __dirname + '/src/page',
+            service         : __dirname + '/src/service',
+            image           : __dirname + '/src/image'
+        }
+    },
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({
             name : 'common',
@@ -61,6 +62,7 @@ var config = {
         new ExtractTextPlugin("css/[name].css"),
         new Htmlwebpakcplugin(getHtmlConfig("index","首页")),
         new Htmlwebpakcplugin(getHtmlConfig("list","商品列表页")),
+        new Htmlwebpakcplugin(getHtmlConfig("result","操作结果")),
         new Htmlwebpakcplugin(getHtmlConfig("user-login","用户登录"))
 	]
 }

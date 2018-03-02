@@ -1,0 +1,22 @@
+/*
+* @Author: 21746209
+* @Date:   2018-01-04 13:42:48
+* @Last Modified by:   21746209
+* @Last Modified time: 2018-01-04 13:48:46
+*/
+.footer{
+	padding-bottom: 10px;
+}
+.footer .links{
+	text-align: center;
+}
+.footer .link{
+	color: #666;
+	padding: 0 10px;
+	line-height: 30px;
+}
+.footer .copyright{
+	color: #666;
+	line-height: 30px;
+	text-align: center;
+}

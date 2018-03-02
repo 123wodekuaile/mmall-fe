@@ -2,5 +2,25 @@
 * @Author: 21746209
 * @Date:   2017-12-22 10:53:28
 * @Last Modified by:   21746209
-* @Last Modified time: 2017-12-22 10:53:40
+* @Last Modified time: 2018-03-01 21:09:47
 */
+.page-wrap{
+	margin-top: 20px;
+	padding: 20px 0;
+	background-color: #fff;
+	text-align: center;
+}
+.result-con {
+	display: none;
+}
+.result-con .result-title{
+	color: #555;
+}
+.result-con .result-content{
+	margin-top: 20px;
+}
+.result-con .result-content .link {
+	margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
